@@ -1,0 +1,13 @@
+# Sets the length of a day cycle in minutes
+# Default is 20 minutes
+day-cycle-length: 20
+
+# Sets the length of a night cycle in minutes
+# Default is 10 minutes
+night-cycle-length: 10
+
+# Sets the worlds that will be affected by the day/night cycle
+# Vanilla worlds: world, world_nether, world_the_end
+# Default is: world
+worlds:
+    - world
