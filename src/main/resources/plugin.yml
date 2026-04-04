@@ -1,0 +1,8 @@
+name: SimpleTimeCycle
+version: '$version'
+
+main: com.entropire.simpletimecycle.SimpleTimeCycle
+api-version: '1.21'
+load: STARTUP
+
+authors: [Entropire]
