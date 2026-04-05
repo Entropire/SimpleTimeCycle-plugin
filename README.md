@@ -1,4 +1,4 @@
-![banner](./img/Banner.png)
+![banner](./img/SimpleTimeCycle_banner.png)
 
 <div align="center">
 
