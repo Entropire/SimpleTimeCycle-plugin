@@ -42,7 +42,7 @@
 
 <h2 id="configuration">⚙️ Configuration</h2>
 
-### config.yml
+### Configuration File
 
 - Edit `config.yml` to customize day/night lengths, sleep settings, and per-world options.  
 - Example: set `player-sleep-percentage: 50` to require half the players to sleep.  
@@ -52,28 +52,22 @@
 
 You can manage all plugin settings via commands.  
 
+- `/stc reload` – Reloads the plugin configuration  
+- `/stc worlds` – Lists all worlds on the server
 - `/stc [setting] [value]` – Changes a **global** setting applied to all worlds.  
 - `/stc [worldName] [setting] [value]` – Changes a setting **for a specific world**.  
 
-#### Day/Night Cycle Settings
+### Settings
 - `day-cycle-length` – Set the length of daytime (minutes)  
 - `night-cycle-length` – Set the length of nighttime (minutes)  
 - `affected-worlds` – Set which worlds use the custom day/night cycle  
-
-#### Player Sleep Window Settings
 - `sleep-start-percentage` – Set when players are allowed to start sleeping (0-100%)  
 - `sleep-end-percentage` – Set when players can no longer sleep (0-100%)  
-
-#### Player Sleep Settings
 - `enable-player-sleep` – Enable or disable player sleeping (true/false)  
 - `player-sleep-disabled-message` – Set the message when sleeping is disabled  
 - `player-sleep-percentage` – Set the percentage of players required to skip the night  
 - `player-sleep-percentage-message` – Set the message when not enough players are sleeping  
 - `player-sleep-success-message` – Set the message when enough players are sleeping and night is skipped  
 - `night-skip-percentage` – Set how much of the night is skipped when conditions are met  
-- `night-already-skip-message` – Set the message when night has already been skipped  
-
-#### Utility Commands
-- `/stc reload` – Reloads the plugin configuration  
-- `/stc worlds` – Lists all worlds on the server
+- `night-already-skip-message` – Set the message when night has already been skipped
 
