@@ -1,6 +1,5 @@
 package com.entropire.simpletimecycle
 
-import org.bukkit.Bukkit
 import org.bukkit.GameRule
 import org.bukkit.World
 import org.bukkit.scheduler.BukkitRunnable
@@ -9,64 +8,34 @@ class TimeController(
     private val handledWorlds: List<World>,
     private val dayCycleSpeedMinutes: Long,
     private val nightCycleSpeedMinutes: Long,
-): BukkitRunnable() {
-    private val timeBuffers = mutableMapOf<World, Double>()
-    private val sleepStartTimes = mutableMapOf<World, Long>()
+) : BukkitRunnable() {
 
-    init {
-        handledWorlds.forEach {
-            it.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false)
-            timeBuffers[it] = 0.0
-        }
-    }
+    private val timeBuffers = mutableMapOf<World, Double>()
 
     override fun run() {
-        for(world in handledWorlds) {
+        for (world in handledWorlds) {
+            if (world.getGameRuleValue(GameRule.DO_DAYLIGHT_CYCLE) == false) continue
+
             val currentTime = world.time
 
-            val dayDurationTicks = dayCycleSpeedMinutes * 60.0 * 20.0
-            val nightDurationTicks = nightCycleSpeedMinutes * 60.0 * 20.0
-
-            val increment = if (currentTime in 0..11999) {
-                12000.0 / dayDurationTicks
+            val desiredPerTick = if (currentTime in 0..11999) {
+                12000.0 / (dayCycleSpeedMinutes * 60.0 * 20.0)
             } else {
-                12000.0 / nightDurationTicks
+                12000.0 / (nightCycleSpeedMinutes * 60.0 * 20.0)
             }
 
-            if (currentTime in 12000..23999) {
-                val players = world.players
-                val sleeping = players.count { it.isSleeping }
+            val extra = desiredPerTick - 1.0
 
-                if (players.isNotEmpty() && sleeping > 0) {
+            val buffer = timeBuffers.getOrPut(world) { 0.0 }
+            val newBuffer = buffer + extra
 
-                    val now = System.currentTimeMillis()
-                    val start = sleepStartTimes.getOrPut(world) { now }
+            val wholeTicks = newBuffer.toLong()
 
-                    val delayMs = 2000L
-
-                    if (now - start >= delayMs) {
-                        world.time = 0
-
-                        sleepStartTimes.remove(world)
-                    }
-
-                    continue
-                } else {
-                    sleepStartTimes.remove(world)
-                }
+            if (wholeTicks != 0L) {
+                world.time = (((currentTime + wholeTicks) % 24000) + 24000) % 24000
             }
 
-
-            val buffer = timeBuffers[world] ?: 0.0
-            val newBuffer = buffer + increment
-
-            if (newBuffer >= 1.0) {
-                val add = newBuffer.toLong()
-                world.time = (currentTime + add) % 24000
-                timeBuffers[world] = newBuffer - add
-            } else {
-                timeBuffers[world] = newBuffer
-            }
+            timeBuffers[world] = newBuffer - wholeTicks
         }
     }
 }

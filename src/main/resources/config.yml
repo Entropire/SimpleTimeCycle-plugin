@@ -1,9 +1,11 @@
 # Sets the length of a day cycle in minutes
 # Default is 20 minutes
+# Minimum is 1 minute
 day-cycle-length: 20
 
 # Sets the length of a night cycle in minutes
 # Default is 10 minutes
+# Minimum is 1 minute
 night-cycle-length: 10
 
 # Sets the worlds that will be affected by the day/night cycle
