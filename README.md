@@ -2,14 +2,14 @@
 
 <div align="center">
 
-[![Release v1.0.0](https://img.shields.io/badge/Release-v1.0.0-darkgreen?style=flat-square)](https://modrinth.com/plugin/simple-factions/version/2.1.1)
-[![Installs 0](https://img.shields.io/badge/Installs-0-brightgreen?style=flat-square)](https://modrinth.com/plugin/simple-factions)
+[![Release v1.0.0](https://img.shields.io/badge/Release-v1.0.0-darkgreen?style=flat-square)](https://modrinth.com/plugin/simpletimecycle/version/1.0.0)
+[![Installs 0](https://img.shields.io/badge/Installs-0-brightgreen?style=flat-square)](https://modrinth.com/plugin/simpletimecycle)
 [![Minecraft 1.21.*](https://img.shields.io/badge/Minecraft-1.21.*-orange?style=flat-square&logo=minecraft)](https://minecraft.net/)
 [![Paper Server](https://img.shields.io/badge/Server-Paper-blue?style=flat-square&logo=paper)](https://papermc.io/)
 [![Join Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=flat-square&logo=discord)](https://discord.com/invite/AwA7mXV8qba)
 [![GPL 3.0 License](https://img.shields.io/badge/License-GPL_3.0-blue?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0)
 [![Java 21](https://img.shields.io/badge/Java-21-red?style=flat-square)](https://adoptium.net/)
-[![Last Update](https://img.shields.io/github/last-commit/Entropire/SimpleTimeCycle-plugin?style=flat-square)](https://github.com/Entropire/SimpleFactions/commits/master)
+[![Last Update](https://img.shields.io/github/last-commit/Entropire/SimpleTimeCycle-plugin?style=flat-square)](https://github.com/Entropire/simpletimecycle/commits/master)
 
 </div>
 
@@ -36,7 +36,7 @@
 <h2 id="installation">🚀 Installation</h2>
 
 1. Create a Paper server if you don’t have one: [PaperMC Docs](https://docs.papermc.io/paper/getting-started/)
-2. Download the latest version of the plugin [here](https://modrinth.com/plugin/simple-factions/versions)
+2. Download the latest version of the plugin [here](https://modrinth.com/plugin/simpletimecycle/versions)
 3. Place the JAR file in your server’s `plugins` folder
 4. Start the server and enjoy
 
