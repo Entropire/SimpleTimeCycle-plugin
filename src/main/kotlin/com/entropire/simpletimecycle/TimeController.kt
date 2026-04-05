@@ -33,6 +33,10 @@ class TimeController(
 
             if (wholeTicks != 0L) {
                 world.time = (((currentTime + wholeTicks) % 24000) + 24000) % 24000
+
+                if(world.time < 12541L){
+                    SimpleTimeCycle.canSkipNight[world] = true
+                }
             }
 
             timeBuffers[world] = newBuffer - wholeTicks

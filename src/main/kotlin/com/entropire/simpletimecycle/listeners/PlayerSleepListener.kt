@@ -11,7 +11,6 @@ import org.bukkit.event.player.PlayerBedEnterEvent
 import org.bukkit.event.world.TimeSkipEvent
 import kotlin.math.ceil
 
-
 class PlayerSleepListener(
     private val plugin: SimpleTimeCycle
 ) : Listener {
@@ -36,21 +35,31 @@ class PlayerSleepListener(
 
         if (world.time < 12541L) return
 
+        if (!(SimpleTimeCycle.canSkipNight[world] ?: false)) {
+            val rawMessage = plugin.config.getString("night-already-skip-message") ?: "Night has already been skipped in {world}!"
+            val parsedMessage = rawMessage
+                .replace("{world}", world.name)
+            val message = Component.text(parsedMessage)
+            player.sendActionBar(message)
+            event.isCancelled = true
+            return
+        }
+
         val playersInWorld = world.players
         val sleepingPlayers = playersInWorld.count { it.isSleeping } + 1
         val sleepingPlayersNeeded = ceil(playersInWorld.size * playerSleepPercentage / 100.0).toInt()
 
         val rawMessage = if (canNightSkip(world, player)) {
-            plugin.config.getString("player-sleep-success-message") ?: "Night skipped in {world}!"
+            plugin.config.getString("player-sleep-success-message") ?: "{amound-sleeping} of {amound-needed} players are sleeping in {world}!"
         } else {
-            plugin.config.getString("player-sleep-percentage-message") ?: "Not enough players sleeping in {world}!"
+            plugin.config.getString("player-sleep-percentage-message") ?: "{amound-sleeping} of {amound-needed} players are sleeping in {world}!"
         }
 
         Bukkit.getScheduler().runTaskLater(plugin, Runnable {
             val parsedMessage = rawMessage
                 .replace("{world}", world.name)
-                .replace("{amount-needed}", sleepingPlayersNeeded.toString())
-                .replace("{amount-sleeping}", sleepingPlayers.toString())
+                .replace("{amound-needed}", sleepingPlayersNeeded.toString())
+                .replace("{amound-sleeping}", sleepingPlayers.toString())
 
             val message = Component.text(parsedMessage)
             playersInWorld.forEach { it.sendActionBar(message) }
@@ -65,7 +74,13 @@ class PlayerSleepListener(
         event.isCancelled = true
 
         if (canNightSkip(world)) {
-            world.time = 0L
+            val nightSkipPercentage = plugin.config.getInt("night-skip-percentage").coerceIn(0, 100)
+            val ticksToSkip = ((23458 - 12000) * nightSkipPercentage / 100.0).toLong()
+            world.time = (world.time + ticksToSkip) % 24000
+            event.world.players.forEach {
+                it.wakeup(true)
+            }
+            SimpleTimeCycle.canSkipNight[world] = false
         }
     }
 

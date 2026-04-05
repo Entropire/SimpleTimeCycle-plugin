@@ -2,9 +2,14 @@ package com.entropire.simpletimecycle
 
 import com.entropire.simpletimecycle.listeners.PlayerSleepListener
 import com.entropire.simpletimecycle.listeners.ServerLoadListener
+import org.bukkit.World
 import org.bukkit.plugin.java.JavaPlugin
 
 class SimpleTimeCycle : JavaPlugin() {
+
+    companion object {
+        var canSkipNight = mutableMapOf<World, Boolean>()
+    }
 
     override fun onEnable() {
         saveDefaultConfig()

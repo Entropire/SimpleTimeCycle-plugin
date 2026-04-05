@@ -2,7 +2,7 @@
 # Day/Night Cycle Configuration
 # ===============================
 
-# Sets the length of a full day cycle in minutes.
+# Sets the length of a full-day cycle in minutes.
 # This is the duration of daytime.
 # Minimum value: 1
 # Default: 20
@@ -29,10 +29,10 @@ affected-worlds:
 # Default: true
 enable-player-sleep: true
 
-# Message displayed when a player tries to sleep but the feature is disabled.
+# Message displayed when a player tries to sleep, but the feature is disabled.
 # You can use placeholders:
 #   {player} - player name
-#   {world}  - world name
+#   {world} - world name
 # Default: "Sorry, sleeping is not allowed in this world!"
 player-sleep-disabled-message: "Sorry {player}, sleeping is not allowed in {world}!"
 
@@ -57,3 +57,15 @@ player-sleep-percentage-message: "{amound-sleeping} of {amound-needed} players a
 #   {amound-sleeping} - amound of players sleeping
 # Default: "Enough players are sleeping, night skipped!"
 player-sleep-success-message: "{amound-sleeping} of {amound-needed} players are sleeping in {world}!"
+
+# The percentage of night skipped when enough players are sleeping.
+# Value should be between 0 and 100.
+# 0 = no night skipped, 100 = the whole night is skipped.
+# Default: 100
+night-skip-percentage: 50
+
+#Message displayed when a player tries to sleep, but there had already been a night skip.
+# You can use placeholders:
+#   {world} - world name
+# Default: "Night has already been skipped in {world}!"
+night-already-skip-message: "Night has already been skipped in {world}!"
