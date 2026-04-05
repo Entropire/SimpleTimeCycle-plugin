@@ -50,16 +50,16 @@ class PlayerSleepListener(
         val sleepingPlayersNeeded = ceil(playersInWorld.size * playerSleepPercentage / 100.0).toInt()
 
         val rawMessage = if (canNightSkip(world, player)) {
-            plugin.config.getString("player-sleep-success-message") ?: "{amound-sleeping} of {amound-needed} players are sleeping in {world}!"
+            plugin.config.getString("player-sleep-success-message") ?: "{amount-sleeping} of {amount-needed} players are sleeping in {world}!"
         } else {
-            plugin.config.getString("player-sleep-percentage-message") ?: "{amound-sleeping} of {amound-needed} players are sleeping in {world}!"
+            plugin.config.getString("player-sleep-percentage-message") ?: "{amount-sleeping} of {amount-needed} players are sleeping in {world}!"
         }
 
         Bukkit.getScheduler().runTaskLater(plugin, Runnable {
             val parsedMessage = rawMessage
                 .replace("{world}", world.name)
-                .replace("{amound-needed}", sleepingPlayersNeeded.toString())
-                .replace("{amound-sleeping}", sleepingPlayers.toString())
+                .replace("{amount-needed}", sleepingPlayersNeeded.toString())
+                .replace("{amount-sleeping}", sleepingPlayers.toString())
 
             val message = Component.text(parsedMessage)
             playersInWorld.forEach { it.sendActionBar(message) }

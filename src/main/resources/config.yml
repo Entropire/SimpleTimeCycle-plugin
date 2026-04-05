@@ -2,19 +2,17 @@
 # Day/Night Cycle Configuration
 # ===============================
 
-# Sets the length of a full-day cycle in minutes.
-# This is the duration of daytime.
+# Length of the daytime in minutes.
 # Minimum value: 1
 # Default: 20
 day-cycle-length: 20
 
-# Sets the length of a full night cycle in minutes.
-# This is the duration of nighttime.
+# Length of the nighttime in minutes.
 # Minimum value: 1
 # Default: 10
 night-cycle-length: 10
 
-# List of worlds that will have custom day/night cycles applied.
+# Worlds where the custom day/night cycle is applied.
 # Vanilla default worlds: world, world_nether, world_the_end
 # Default: ["world"]
 affected-worlds:
@@ -25,47 +23,44 @@ affected-worlds:
 # ===============================
 
 # Enables the player sleep feature.
-# When false, players cannot sleep regardless of time.
+# If false, players cannot sleep at all.
 # Default: true
 enable-player-sleep: true
 
-# Message displayed when a player tries to sleep, but the feature is disabled.
-# You can use placeholders:
-#   {player} - player name
+# Message shown when a player tries to sleep but sleeping is disabled.
+# Placeholders:
+#   {player} - player's name
 #   {world} - world name
 # Default: "Sorry, sleeping is not allowed in this world!"
 player-sleep-disabled-message: "Sorry {player}, sleeping is not allowed in {world}!"
 
-# The percentage of players that must be sleeping to allow night skip.
-# Value should be between 0 and 100.
+# Percentage of players that must be sleeping to skip the night.
 # 0 = no players required, 100 = all players must sleep.
+# Minimum: 0, Maximum: 100
 # Default: 50
 player-sleep-percentage: 50
 
-# Message displayed when a player tries to sleep but not enough players are sleeping.
-# You can use placeholders:
+# Message shown when not enough players are sleeping to skip the night.
+# Placeholders:
 #   {world} - world name
-#   {amound-needed} - amound of players needed to skip night
-#   {amound-sleeping} - amound of players sleeping
+#   {amount-needed} - number of players needed
+#   {amount-sleeping} - number of players currently sleeping
 # Default: "Not enough players are sleeping to skip night!"
-player-sleep-percentage-message: "{amound-sleeping} of {amound-needed} players are sleeping in {world}!"
+player-sleep-percentage-message: "{amount-sleeping} of {amount-needed} players are sleeping in {world}!"
 
-# Message displayed when a player tries to sleep and enough players are sleeping.
-# You can use placeholders:
-#   {world} - world name
-#   {amound-needed} - amound of players needed to skip night
-#   {amound-sleeping} - amound of players sleeping
+# Message shown when enough players are sleeping and the night is skipped.
+# Placeholders same as above.
 # Default: "Enough players are sleeping, night skipped!"
-player-sleep-success-message: "{amound-sleeping} of {amound-needed} players are sleeping in {world}!"
+player-sleep-success-message: "{amount-sleeping} of {amount-needed} players are sleeping in {world}!"
 
-# The percentage of night skipped when enough players are sleeping.
-# Value should be between 0 and 100.
-# 0 = no night skipped, 100 = the whole night is skipped.
-# Default: 100
+# Percentage of the night to skip when enough players are sleeping.
+# 0 = no night skipped, 100 = the full night is skipped.
+# Minimum: 0, Maximum: 100
+# Default: 50
 night-skip-percentage: 50
 
-#Message displayed when a player tries to sleep, but there had already been a night skip.
-# You can use placeholders:
+# Message shown when a player tries to sleep, but the night has already been partially or fully skipped.
+# Placeholders:
 #   {world} - world name
 # Default: "Night has already been skipped in {world}!"
 night-already-skip-message: "Night has already been skipped in {world}!"
