@@ -13,3 +13,9 @@ night-cycle-length: 10
 # Default is: world
 worlds:
     - world
+
+
+# Enables the player sleep feature
+# Default is: true
+enable-player-sleep: true
+

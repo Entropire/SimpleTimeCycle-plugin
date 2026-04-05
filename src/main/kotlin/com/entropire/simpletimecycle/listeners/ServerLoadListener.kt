@@ -15,7 +15,7 @@ class ServerLoadListener(private val plugin: SimpleTimeCycle) : Listener {
         dayCycleSpeedMinutes = if (dayCycleSpeedMinutes < 1) 1L else dayCycleSpeedMinutes
         var nightCycleSpeedMinutes = config.getLong("night-cycle-length")
         nightCycleSpeedMinutes = if (nightCycleSpeedMinutes < 1) 1L else nightCycleSpeedMinutes
-        val handledWorlds = plugin.server.worlds.filter { it.name in config.getStringList("worlds") }
+        val handledWorlds = plugin.server.worlds.filter { it.name in config.getStringList("affected-worlds") }
         TimeController(handledWorlds, dayCycleSpeedMinutes, nightCycleSpeedMinutes).runTaskTimer(plugin, 0, 1)
     }
 }
